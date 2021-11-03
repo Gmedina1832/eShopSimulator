@@ -11,7 +11,13 @@ namespace eShopSimulator
 
         static void MainMenu()
         {
-            Console.WriteLine("Main Menu ");
+            Console.WriteLine("Welcome to e-Shop!");
+
+            Console.WriteLine("[1] Shop");
+            Console.WriteLine("[2] Exit");
+
+            Console.Write("Select an Option: ");
+            Console.ReadLine();
         }
     }
 }
