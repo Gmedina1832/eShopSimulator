@@ -6,7 +6,12 @@ namespace eShopSimulator
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            MainMenu();
+        }
+
+        static void MainMenu()
+        {
+            Console.WriteLine("Main Menu ");
         }
     }
 }
