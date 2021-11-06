@@ -12,11 +12,17 @@ namespace eShopSimulator
             ess.Init();
 
             MainMenu();
-            opt = GetOption("Select an Option");
-            Shop();
-            Cart();
-            CheckOut();
-            Exit();
+                      
+            do
+            {
+                switch (opt)
+                {
+                    case 1:
+                        Shop();
+                        break;
+                }                
+            } while (!Exit(opt));
+            
 
         }
 
@@ -27,17 +33,40 @@ namespace eShopSimulator
 
         static void MainMenu()
         {
-            Console.WriteLine("Welcome to e-Shop Simulator!");
+            Console.WriteLine("Welcome to e-Shop Simulator!\n");
 
-            Console.WriteLine("[1] Enter e-Shop - Browse Items");
-            Console.WriteLine("[2] Exit simulation");
+            //Console.WriteLine("[0] Exit simulation");
+            //Console.WriteLine("[1] Enter e-Shop - Browse Items");            
 
-
+            opt = GetOption("[0] Exit simulation\n[1] Enter e-Shop - Browse Items\n\nSelect an Option: ");
         }
 
         static void Shop()
         {
-            Console.WriteLine("Shop items");
+            string[] items = { "Item 1", "Item 2", "Item 3" };
+            Console.WriteLine("Shop Items\n");
+            for (int i = 0; i < items.Length; i++)
+            {
+                Console.WriteLine(items[i]);
+            }
+
+            int shopOpt = GetOption("[0]-Menu [1]-Add to cart [2]-View Cart [3]-Checkout");
+            
+            switch(shopOpt)
+            {
+                case 0:
+                    MainMenu();
+                    break;
+                case 1:
+                    Console.WriteLine("Item Added to cart");
+                    break;
+                case 2:
+                    Console.WriteLine("Showing items on cart");
+                    break;
+                case 3:
+                    Console.WriteLine("Checkout items");
+                    break;
+            }
         }
 
         static void Cart()
@@ -50,9 +79,14 @@ namespace eShopSimulator
             Console.WriteLine("Checkout items");
         }
 
-        static void Exit()
+        static bool Exit(int opt)
         {
-            Console.WriteLine("Closing Shop");            
+            if(opt == 0)
+            {
+                Console.WriteLine("Goodbye!");
+                return true;
+            }
+            return false;            
         }
 
         static int GetOption(string prompt)
@@ -61,7 +95,7 @@ namespace eShopSimulator
             {
                 try
                 {
-                    Console.WriteLine(prompt);
+                    Console.Write(prompt);
                     return Convert.ToInt32(Console.ReadLine());
                 }
                 catch
