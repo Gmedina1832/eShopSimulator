@@ -7,17 +7,44 @@ namespace eShopSimulator
         static void Main(string[] args)
         {
             MainMenu();
+            GetOption();
+            Shop();
+            Cart();
+            CheckOut();
+
         }
 
         static void MainMenu()
         {
-            Console.WriteLine("Welcome to e-Shop!");
+            Console.WriteLine("Welcome to e-Shop Simulator!");
 
-            Console.WriteLine("[1] Shop");
+            Console.WriteLine("[1] Enter e-Shop");
             Console.WriteLine("[2] Exit");
 
-            Console.Write("Select an Option: ");
-            Console.ReadLine();
+            Console.WriteLine("Select an Option: ");
         }
+
+        static void Shop()
+        {
+            Console.WriteLine("Shop");
+        }
+
+        static void Cart()
+        {
+            Console.WriteLine("Shopping Cart");
+        }
+
+        static void CheckOut()
+        {
+            Console.WriteLine("Checkout");
+        }
+
+        static void GetOption()
+        {
+            Console.WriteLine("Option Selection...");
+        }
+
+        
+        
     }
 }
