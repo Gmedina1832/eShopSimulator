@@ -42,15 +42,9 @@ namespace eShopSimulator
         }
 
         static void Shop()
-        {
-            string[] items = { "Item 1", "Item 2", "Item 3" };
-            Console.WriteLine("Shop Items\n");
-            for (int i = 0; i < items.Length; i++)
-            {
-                Console.WriteLine(items[i]);
-            }
+        {          
 
-            int shopOpt = GetOption("[0]-Menu [1]-Add to cart [2]-View Cart [3]-Checkout");
+            int shopOpt = GetOption("[0]-Menu [1]-Items [2]-View Cart [3]-Checkout: ");
             
             switch(shopOpt)
             {
@@ -58,24 +52,61 @@ namespace eShopSimulator
                     MainMenu();
                     break;
                 case 1:
-                    Console.WriteLine("Item Added to cart");
+                    Inventory();
                     break;
                 case 2:
-                    Console.WriteLine("Showing items on cart");
+                    Cart();
                     break;
                 case 3:
-                    Console.WriteLine("Checkout items");
+                    CheckOut();
+                    break;
+            }
+        }
+        static void Inventory()
+        {
+            Console.Clear();
+
+            string[] items = { "Item 1", "Item 2", "Item 3" };
+            Console.WriteLine("Shop Items\n");
+            for (int i = 0; i < items.Length; i++)
+            {
+                Console.WriteLine("[" + i + "]- " + items[i]);
+            }
+
+            int inventoryOpt = GetOption("\n[0]-Menu [1]-Add to Cart [2]-View Cart [3]-Checkout: ");
+
+            switch (inventoryOpt)
+            {
+                case 0:
+                    MainMenu();
+                    break;
+                case 1:
+                    AddToCart();
+                    break;
+                case 2:
+                    Cart();
+                    break;
+                case 3:
+                    CheckOut();
                     break;
             }
         }
 
+        static void AddToCart()
+        {
+            int add2 = GetOption("Select an item: ");
+            Console.WriteLine("Item " + add2 + " added to cart");
+        }
+
         static void Cart()
         {
+            Console.Clear();
             Console.WriteLine("Cart items");
         }
 
         static void CheckOut()
         {
+            Console.Clear();
             Console.WriteLine("Checkout items");
         }
 
