@@ -14,24 +14,25 @@ namespace eShopSimulator
         {
             eShopSimulator ess = new eShopSimulator();
             
-            ess.Init();
+            //ess.Init();
 
             MainMenu();
-            Shop();
-            AddToCart();
-            Cart();
-            CheckOut();
+            //Shop();
+            //AddToCart();
+            //Cart();
+            //CheckOut();
 
         }
 
-        void Init()
-        {
-            Console.WriteLine("Initialization...");
-        }
+        //void Init()
+        //{
+        //    Console.WriteLine("Initialization...");
+        //}
 
         static void MainMenu()
         {
-            Console.WriteLine("Welcome to e-Shop Simulator!\n");             
+            Console.WriteLine("Welcome to e-Shop Simulator!\n");
+            Console.WriteLine("[1] Enter Shop");
         }
 
         static void Shop()
