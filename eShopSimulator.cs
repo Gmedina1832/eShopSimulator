@@ -6,11 +6,16 @@ namespace eShopSimulator
 {
     class eShopSimulator
     {
+        //public static Random random = new Random();
+        //public static Item pant;
+        //public static Item shirt;
+        //public static List<Item> items = new List<Item>();
         static void Main()
         {
             eShopSimulator ess = new eShopSimulator();
-
+            
             ess.Init();
+
             MainMenu();
             Shop();
             AddToCart();
@@ -21,7 +26,7 @@ namespace eShopSimulator
 
         void Init()
         {
-            Console.WriteLine("Initialization");            
+            Console.WriteLine("Initialization...");
         }
 
         static void MainMenu()
@@ -31,13 +36,15 @@ namespace eShopSimulator
 
         static void Shop()
         {
-            Console.WriteLine("Show items in shop inventory");
+            Console.WriteLine("Show items in shop inventory\n");
+            Inventory inventory = new Inventory();
+            var stock = inventory.Stock();
+
+            for (int i = 0; i < stock.Count; i++)
+            {
+                Console.WriteLine(stock.ElementAt(i).Key + " " + stock.ElementAt(i).Value);
+            }
         }
-
-        //static void Inventory()
-        //{
-
-        //}
 
         static void AddToCart()
         {
