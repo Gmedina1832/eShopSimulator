@@ -39,10 +39,11 @@ namespace eShopSimulator
             Console.WriteLine("Show items in shop inventory\n");
             Inventory inventory = new Inventory();
             var stock = inventory.Stock();
+            var price = inventory.Price();
 
             for (int i = 0; i < stock.Count; i++)
             {
-                Console.WriteLine(stock.ElementAt(i).Key + " " + stock.ElementAt(i).Value);
+                Console.WriteLine(stock.ElementAt(i).Key.itemName + " $"+ price.ElementAt(i).Value  + " available: " + stock.ElementAt(i).Value);
             }
         }
 
