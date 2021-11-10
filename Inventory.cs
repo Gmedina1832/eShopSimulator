@@ -11,7 +11,7 @@ namespace eShopSimulator
         public Item shirt;
         public Item shoes;
         public Dictionary<Item, int> stock = new Dictionary<Item, int>();
-        public Dictionary<Item, float> items = new Dictionary<Item, float>();
+        public Dictionary<Item, float> prices = new Dictionary<Item, float>();
 
         public Inventory()
         {
@@ -22,9 +22,9 @@ namespace eShopSimulator
                 shoes = new Item("Shoes", random.Next(300, 399).GetHashCode());
             }
             
-            this.items.Add(pant,12.99F);
-            this.items.Add(shirt, 13.99F);
-            this.items.Add(shoes, 10.99F);
+            this.prices.Add(pant,12.99F);
+            this.prices.Add(shirt, 13.99F);
+            this.prices.Add(shoes, 10.99F);
             this.stock.Add(pant, 10);
             this.stock.Add(shirt, 10);
             this.stock.Add(shoes, 10);
@@ -37,7 +37,7 @@ namespace eShopSimulator
 
         public Dictionary<Item, float> Price()
         {
-            return items;
+            return prices;
         }
 
 

@@ -6,17 +6,32 @@ namespace eShopSimulator
 {
     class eShopSimulator
     {
-        //public static Random random = new Random();
-        //public static Item pant;
-        //public static Item shirt;
-        //public static List<Item> items = new List<Item>();
+        static int opt;
+
+        static Inventory inventory = new Inventory();
+
+        static bool buyItem;
+
+
         static void Main()
         {
             eShopSimulator ess = new eShopSimulator();
             
-            //ess.Init();
+            ess.Init();
 
             MainMenu();
+            
+            opt = GetOption("Make a Selection: [1] Enter Shop  [2] Exit Shop : ");
+            switch(opt)
+            {
+                case 1:
+                    Shop();
+                    CheckOutItems(buyItem);
+                    break;
+                case 2:
+                    Exit();
+                    break;
+            }
             //Shop();
             //AddToCart();
             //Cart();
@@ -24,70 +39,146 @@ namespace eShopSimulator
 
         }
 
-        //void Init()
-        //{
-        //    Console.WriteLine("Initialization...");
-        //}
+        void Init()
+        {            
+            //var stock = inventory.Stock();
+            //var price = inventory.Price();
+        }
+
+        //MAIN MENU---------------------------------->
 
         static void MainMenu()
         {
             Console.WriteLine("Welcome to e-Shop Simulator!\n");
-            Console.WriteLine("[1] Enter Shop");
         }
+
+        //-------------------------------------------^
+
+        //SHOP DISPLAY------------------------------->
 
         static void Shop()
         {
-            Console.WriteLine("Show items in shop inventory\n");
-            Inventory inventory = new Inventory();
+            Console.Clear();
+            ShopInventory(inventory);
+
+            opt = GetOption("\nMake a Selection: [1] Shop-Add To Cart [2] Cart [3] Exit : ");
+
+            if (opt == 1)
+            {
+                AddToCart(inventory);
+                
+            }
+        }
+
+        //--------------------------------------------^
+
+        static void ShopInventory(Inventory inventory)
+        {
+            Console.WriteLine("Items in Shop\n");
             var stock = inventory.Stock();
             var price = inventory.Price();
 
             for (int i = 0; i < stock.Count; i++)
             {
-                Console.WriteLine(stock.ElementAt(i).Key.itemName + " $"+ price.ElementAt(i).Value  + " available: " + stock.ElementAt(i).Value);
+                Console.WriteLine("|-----------------------------------|");
+                Console.WriteLine("      ["+i+"]-"+stock.ElementAt(i).Key.itemName + " $" + price.ElementAt(i).Value + " Qty: " + stock.ElementAt(i).Value);
             }
         }
 
-        static void AddToCart()
+        static void AddToCart(Inventory inventory)
         {
-            Console.WriteLine("Add items to cart");
+            Console.Clear();
+            do
+            {
+                Console.WriteLine("Add Item To Cart\n");
+                ShopInventory(inventory);
+                opt = GetOption("\nSelect an Item From Shop: ");
+                ProcessSelect(opt, inventory);
+                Console.WriteLine("|-----------------------------------|");
+            } while (CheckOut(GetOption("Check Out? [1] YES")));
         }
+
+        static void ProcessSelect(int selection, Inventory inventory)
+        {
+            var stock = inventory.Stock();
+            var price = inventory.Price();
+            Console.Clear();
+            Console.WriteLine("Item Added To Cart");
+            Console.WriteLine("|-----------------------------------|");
+            Console.WriteLine("      [" + selection + "]-" + stock.ElementAt(selection).Key.itemName + " $" + price.ElementAt(selection).Value + " Qty: " + stock.ElementAt(selection).Value);
+
+        }
+
+        //DISPLAY SELECTED ITEMS IN CART------------>
 
         static void Cart()
         {
             Console.WriteLine("Cart items");
         }
 
-        static void CheckOut()
+        //------------------------------------------^
+
+        //CHECKOUT PROCESS-------------------------->
+
+        static void CheckOutItems(bool finishTransaction)
         {
-            Console.WriteLine("Checkout items");
+            Console.Clear();
+            Console.WriteLine("End Of Transaction: " + finishTransaction);
+        }
+
+        //------------------------------------------^
+
+        //EXIT APP FUNCTIONS------------------------>
+
+        static bool CheckOut(int checkOut)
+        {
+            if (checkOut == 1)
+            {
+                buyItem = true;
+                return false;                
+            }
+            else
+            {
+                buyItem = false;
+                return true;                
+            }
         }
 
         static void Exit()
         {
-            Console.WriteLine("Exit eShopSimulator");
-            //if(opt == 0)
-            //{
-            //    Console.WriteLine("Goodbye!");
-            //    return true;
-            //}
-            //return false;            
+            Console.WriteLine("GOOD BYE!");         
         }
 
-        //static int GetOption(string prompt)
-        //{
-        //    while (true)
-        //    {
-        //        try
-        //        {
-        //            Console.Write(prompt);
-        //            return Convert.ToInt32(Console.ReadLine());
-        //        }
-        //        catch
-        //        {
-                    
-        //        }
-        //    }            
-        //}        
+        //------------------------------------------^
+
+        //INPUT OPTIONS----------------------------->
+
+        static void PressEnter()
+        {
+            Console.Write("Continue...");
+            Console.ReadLine();
+        }
+
+        static int GetOption(string prompt)
+        {
+            while (true)
+            {
+                try
+                {
+                    Console.WriteLine(prompt);
+                    return Convert.ToInt32(Console.ReadLine());
+                }
+                catch
+                {
+
+                }
+            }
+        }
+
+        //-----------------------------------------^
+
+
+
+
     }
 }
