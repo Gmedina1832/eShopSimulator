@@ -1,15 +1,20 @@
-﻿using System;
+﻿/*Gabriel Medina Pereira
+ *Course: COMP2400
+  File: Inventory.cs
+  Description: eShop Simulation Object */
+
+using System;
 using System.Collections.Generic;
-using System.Text;
+
 
 namespace eShopSimulator
 {
     class Inventory
     {
         public static Random random = new Random();
-        public Item pant; 
-        public Item shirt;
-        public Item shoes;
+        private Item pant; 
+        private Item shirt;
+        private Item shoes;
         public Dictionary<Item, int> stock = new Dictionary<Item, int>();
         public Dictionary<Item, float> prices = new Dictionary<Item, float>();
 
@@ -40,6 +45,18 @@ namespace eShopSimulator
             return prices;
         }
 
+        public void RemoveStock(Item item, int qty)
+        {
+            //Verificar si existe el key 
+            if (stock.ContainsKey(item))
+            {
+                stock[item] -= qty;
+            }
+            else
+            {
+                stock.Remove(item);
+            }
+        }
 
     }
 }

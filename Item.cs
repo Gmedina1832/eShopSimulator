@@ -1,6 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿/*Gabriel Medina Pereira
+ *Course: COMP2400
+  File: Item.cs
+  Description: eShop Simulation Object */
 
 namespace eShopSimulator
 {
